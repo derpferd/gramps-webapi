@@ -154,7 +154,7 @@ def get_db_outside_request(tree: str, view_private: bool, readonly: bool) -> DbR
     return dbstate.db
 
 
-def get_db_handle(readonly: bool = True) -> DbReadBase:
+def get_db_handle(readonly: bool = True, tree: Optional[str] = None) -> DbReadBase:
     """Open the database and get the current instance.
 
     Called before every request.
@@ -165,7 +165,8 @@ def get_db_handle(readonly: bool = True) -> DbReadBase:
     If `readonly` is false, locks the database during the request.
     """
     view_private = has_permissions({PERM_VIEW_PRIVATE})
-    tree = get_tree_from_jwt()
+    if not tree:
+        tree = get_tree_from_jwt()
 
     if readonly and "db" not in g:
         # cache the db instance for the duration of
