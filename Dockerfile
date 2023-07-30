@@ -52,6 +52,10 @@ RUN wget https://github.com/gramps-project/addons/archive/refs/heads/master.zip 
 RUN python3 -m pip install --no-cache-dir --extra-index-url https://www.piwheels.org/simple \
     gunicorn
 
+# install dependecies
+RUN python3 -m pip install --no-cache-dir --extra-index-url https://www.piwheels.org/simple \
+    "Click>=7.0" "Flask>=2.1.0" "Flask-Caching>=2.0.0" Flask-Compress Flask-Cors "Flask-Limiter>=2.9.0" Flask-SQLAlchemy "marshmallow>=3.13.0" webargs SQLAlchemy pdf2image Pillow "bleach>=5.0.0" tinycss2 whoosh jsonschema ffmpeg-python alembic "celery[redis]" Unidecode
+
 # copy package source and install
 COPY . /app/src
 RUN python3 -m pip install --no-cache-dir --extra-index-url https://www.piwheels.org/simple \

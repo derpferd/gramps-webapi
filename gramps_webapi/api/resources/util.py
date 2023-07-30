@@ -1279,8 +1279,8 @@ def run_import_media_archive(
 
         return {"missing": len(checksums_handles), "uploaded": 0, "failures": 0}
 
-    upload_size = sum([file_size for (file_path, file_size) in to_upload.values()])
-    check_quota_media(to_add=upload_size, tree=tree)
+    # upload_size = sum([file_size for (file_path, file_size) in to_upload.values()])
+    # check_quota_media(to_add=upload_size, tree=tree)
 
     num_failures = 0
     for checksum, (file_path, file_size) in to_upload.items():
